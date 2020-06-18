@@ -1,0 +1,43 @@
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand logo_font" href="{{ path('product_index') }}"><span class="logo_red">YOUR</span>esponse</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav justify-content-end">
+                {% if app.user %}
+                    <li class="nav-item default_font p-0 text-center p-0">
+                        <a class="nav-link text-truncate" href="#">Привет, {{ app.user.name }}</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item default_font text-center p-0">
+                            <a class="nav-link" href="{{ path('easyadmin') }}">Админка</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_PROVIDER') %}
+                        <li class="nav-item default_font text-center p-0">
+                            <a class="nav-link" href="{{ path('product_new') }}">Добавить продукт</a>
+                        </li>
+                        <li class="nav-item default_font text-center p-0">
+                            <a class="nav-link" href="{{ path('product_my') }}">Мои продукты</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item default_font text-center p-0">
+                        <a class="nav-link" href="{{ path('about') }}">О проекте</a>
+                    </li>
+                    <li class="nav-item default_font text-center p-0">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item default_font text-center">
+                        <a class="nav-link" href="{{ path('app_login') }}">Войти</a>
+                    </li>
+                    <li class="nav-item default_font text-center">
+                        <a class="nav-link" href="{{ path('app_register') }}">Регистрация</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
